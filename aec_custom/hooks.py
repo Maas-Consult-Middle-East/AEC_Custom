@@ -27,7 +27,10 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+                "Purchase Order": "public/js/purchase_order.js",
+                "Supplier Quotation": "public/js/supplier_quotation.js",
+              }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -116,13 +119,14 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Item": {
+		"before_save": "aec_custom.events.item.set_item_name",
+	},
+    "Supplier Quotation": {
+        "on_submit": "aec_custom.events.supplier_quotation.update_supplier_quotation_items",
+    }
+}
 
 # Scheduled Tasks
 # ---------------

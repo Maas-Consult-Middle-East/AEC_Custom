@@ -1,0 +1,132 @@
+{
+ "actions": [],
+ "autoname": "field:naming_series",
+ "creation": "2026-08-24 09:30:30.596787",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "lft",
+  "rgt",
+  "old_parent",
+  "parent_wbs",
+  "naming_series",
+  "wbs_name",
+  "is_group",
+  "budget",
+  "release",
+  "disabled",
+  "tab_break_hazbx",
+  "budget_transfer_history"
+ ],
+ "fields": [
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "WBS"
+  },
+  {
+   "fieldname": "parent_wbs",
+   "fieldtype": "Link",
+   "label": "Parent WBS",
+   "options": "WBS"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "label": "WBS Number",
+   "unique": 1
+  },
+  {
+   "fieldname": "wbs_name",
+   "fieldtype": "Data",
+   "label": "WBS Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "depends_on": "eval: !!doc.creation && !Number(doc.is_group)\r\n",
+   "fieldname": "budget",
+   "fieldtype": "Currency",
+   "label": "Budget",
+   "permlevel": 1
+  },
+  {
+   "depends_on": "eval: !!doc.creation && !Number(doc.is_group) && (Number(doc.budget||0) > 0)\r\n",
+   "fieldname": "release",
+   "fieldtype": "Currency",
+   "label": "Release",
+   "permlevel": 2
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Is Completed (Technical Completion)"
+  },
+  {
+   "depends_on": "eval:doc.creation",
+   "fieldname": "tab_break_hazbx",
+   "fieldtype": "Tab Break",
+   "label": "Budget Transfer History"
+  },
+  {
+   "fieldname": "budget_transfer_history",
+   "fieldtype": "Table",
+   "label": "Budget Transfer History",
+   "options": "WBS Budget Transfer Log"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2026-08-24 10:32:03.783771",
+ "modified_by": "Administrator",
+ "module": "Aec Custom",
+ "name": "WBS",
+ "name_case": "Title Case",
+ "naming_rule": "By fieldname",
+ "nsm_parent_field": "parent_wbs",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "wbs_name,parent_wbs",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
