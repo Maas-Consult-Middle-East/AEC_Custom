@@ -1,42 +1,47 @@
-# Copyright (c) 2026, Salman Adayatt and contributors
-# For license information, please see license.txt
-
 import frappe
 from frappe.model.document import Document
 
+
 class SupervisorWBSAssignment(Document):
-	def before_validate(doc):
-	# Block overlapping supervisor assignments for same employee
-		if doc.to_date and doc.to_date < doc.from_date:
+
+	def before_validate(self):
+
+		
+		if self.to_date and self.to_date < self.from_date:
 			frappe.throw("To Date cannot be before From Date")
 
-		if doc.employee and doc.from_date and doc.active:
+		
+		if self.employee and self.from_date and self.active:
 
-			new_from = doc.from_date
-			new_to = doc.to_date or "9999-12-31"
+			new_from = self.from_date
+			new_to = self.to_date or "9999-12-31"
 
 			conflict = frappe.db.sql("""
-				SELECT name, supervisor, wbs, from_date, to_date
+				SELECT
+					name,
+					supervisor,
+					from_date,
+					to_date
 				FROM `tabSupervisor WBS Assignment`
 				WHERE employee = %(employee)s
-				AND active = 1
-				AND name != %(name)s
-				AND from_date <= %(new_to)s
-				AND IFNULL(to_date, '9999-12-31') >= %(new_from)s
+					AND active = 1
+					AND name != %(name)s
+					AND from_date <= %(new_to)s
+					AND IFNULL(to_date, '9999-12-31') >= %(new_from)s
 				LIMIT 1
 			""", {
-				"employee": doc.employee,
-				"name": doc.name or "",
+				"employee": self.employee,
+				"name": self.name or "",
 				"new_from": new_from,
 				"new_to": new_to
 			}, as_dict=True)
 
 			if conflict:
 				c = conflict[0]
-				frappe.throw(
-					f"Employee {doc.employee} is already assigned in this period.\n\n"
-					f"Supervisor: {c['supervisor']}\n"
-					f"WBS: {c['wbs']}\n"
-					f"From: {c['from_date']}  To: {c['to_date'] or 'Open'}"
-				)
 
+				frappe.throw(
+					f"Employee {self.employee} is already assigned during this period.<br><br>"
+					f"<b>Supervisor:</b> {c['supervisor']}<br>"
+					f"<b>From:</b> {c['from_date']}<br>"
+					f"<b>To:</b> {c['to_date'] or 'Open'}"
+				)

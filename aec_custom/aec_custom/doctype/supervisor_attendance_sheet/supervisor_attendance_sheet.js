@@ -50,9 +50,9 @@ function load_team(frm) {
     frappe.call({
         method: "aec_custom.aec_custom.doctype.supervisor_attendance_sheet.supervisor_attendance_sheet.get_supervisor_team",
         args: {
-    supervisor: frm.doc.supervisor,
-    sheet_date: frm.doc.sheet_date
-},
+            supervisor: frm.doc.supervisor,
+            sheet_date: frm.doc.sheet_date
+        },
         callback: function (r) {
             const employees = r.message || [];
 

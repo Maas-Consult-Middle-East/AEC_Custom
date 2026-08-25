@@ -8,7 +8,21 @@ from frappe.utils import getdate, get_datetime, get_datetime_str, nowdate
 
 
 class SupervisorAttendanceSheet(Document):
-    pass
+    def before_save(doc):
+            for row in doc.employee:
+                if row.check_in and row.check_out:
+                    start = frappe.utils.get_datetime(row.check_in)
+                    end = frappe.utils.get_datetime(row.check_out)
+
+                    diff_seconds = (end - start).total_seconds()
+
+                    if diff_seconds <= 0:
+                        frappe.throw(f"Row {row.idx}: Check-Out must be after Check-In")
+
+                    row.hours = round(diff_seconds / 3600, 2)
+                else:
+                    row.hours = 0
+    
 
 
 # ============================================================
@@ -369,17 +383,8 @@ def update_sheet_status(sheet, posted):
             "Draft"
         )
 
-def before_save(doc, method):
-	for row in doc.employee:
-		if row.check_in and row.check_out:
-			start = frappe.utils.get_datetime(row.check_in)
-			end = frappe.utils.get_datetime(row.check_out)
+    
+        
+          
 
-			diff_seconds = (end - start).total_seconds()
-
-			if diff_seconds <= 0:
-				frappe.throw(f"Row {row.idx}: Check-Out must be after Check-In")
-
-			row.hours = round(diff_seconds / 3600, 2)
-		else:
-			row.hours = 0
+		

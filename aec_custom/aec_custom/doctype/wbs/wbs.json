@@ -71,15 +71,13 @@
    "depends_on": "eval: !!doc.creation && !Number(doc.is_group)\r\n",
    "fieldname": "budget",
    "fieldtype": "Currency",
-   "label": "Budget",
-   "permlevel": 1
+   "label": "Budget"
   },
   {
    "depends_on": "eval: !!doc.creation && !Number(doc.is_group) && (Number(doc.budget||0) > 0)\r\n",
    "fieldname": "release",
    "fieldtype": "Currency",
-   "label": "Release",
-   "permlevel": 2
+   "label": "Release"
   },
   {
    "default": "0",
@@ -103,7 +101,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2026-08-24 10:32:03.783771",
+ "modified": "2026-08-25 10:11:35.305935",
  "modified_by": "Administrator",
  "module": "Aec Custom",
  "name": "WBS",

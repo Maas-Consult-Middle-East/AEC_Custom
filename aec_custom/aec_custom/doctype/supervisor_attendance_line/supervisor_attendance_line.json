@@ -23,6 +23,7 @@
   {
    "fieldname": "employee",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Employee",
    "options": "Employee"
   },
@@ -57,37 +58,42 @@
   {
    "fieldname": "hours",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Hours",
    "read_only": 1
   },
   {
    "fieldname": "post_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Post Status",
    "options": "Not Posted\nPosted\nError"
   },
   {
    "fieldname": "in_checkin_ref",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "IN Checkin Ref",
    "options": "Employee Checkin"
   },
   {
    "fieldname": "out_checkin_ref",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "OUT Checkin Ref",
    "options": "Employee Checkin"
   },
   {
    "fieldname": "error_message",
    "fieldtype": "Small Text",
+   "in_list_view": 1,
    "label": "Error Message"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-08-24 09:33:15.014994",
+ "modified": "2026-08-25 10:44:07.681020",
  "modified_by": "Administrator",
  "module": "Aec Custom",
  "name": "Supervisor Attendance Line",
