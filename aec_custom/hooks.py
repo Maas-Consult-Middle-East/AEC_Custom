@@ -217,3 +217,18 @@ doc_events = {
 # auth_hooks = [
 # 	"aec_custom.auth.validate"
 # ]
+
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["module", "=", "aec_custom"]
+        ]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["module", "=", "aec_custom"]
+        ]
+    }
+]
