@@ -222,8 +222,13 @@ fixtures = [
     {
         "dt": "Custom Field",
         "filters": [
-            ["module", "=", "aec_custom"]
+            ["module", "=", "Aec Custom"]
         ]
     },
-    
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["module", "=", "Aec Custom"]
+        ]
+    }
 ]
