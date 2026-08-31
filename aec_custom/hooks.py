@@ -218,17 +218,17 @@ doc_events = {
 # 	"aec_custom.auth.validate"
 # ]
 
-# fixtures = [
-#     {
-#         "dt": "Custom Field",
-#         "filters": [
-#             ["module", "=", "Aec Custom"]
-#         ]
-#     },
-#     {
-#         "dt": "Property Setter",
-#         "filters": [
-#             ["module", "=", "Aec Custom"]
-#         ]
-#     }
-# ]
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["module", "=", "Aec Custom"]
+        ]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["module", "=", "Aec Custom"]
+        ]
+    }
+]
